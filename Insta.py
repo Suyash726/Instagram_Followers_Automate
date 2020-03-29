@@ -1,4 +1,7 @@
 from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
 from time import  sleep
 
 from Secret import number,password
@@ -21,10 +24,18 @@ class Insta_Bot:
 
         self.driver.find_element_by_xpath('//*[@id="react-root"]/section/nav/div[2]/div/div/div[3]/div/div[4]/a/img').click()
         
-    def get_followers(self):
-        self.driver.find_element_by_xpath('//*[@id="react-root"]/section/main/div/header/section/ul/li[2]/a').click()
+        sleep(5)
         
+        self.driver.find_element_by_xpath('//*[@id="react-root"]/section/main/div/header/section/ul/li[2]/a').click()
+
+        sleep(5)
+
+        popup = self.driver.find_element_by_xpath('/html/body/div[4]/div/div[2]')
+
+        sleep(5)
+
+        self.driver.execute_script(('arguments[0].scrollTop = arguments[0].scrollHeight/{}'),popup)
+
 
 i = Insta_Bot()
 i.login()
-i.get_followers()
